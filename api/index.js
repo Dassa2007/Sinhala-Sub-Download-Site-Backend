@@ -4,14 +4,17 @@ const cors = require('cors');
 
 const app = express();
 
-// සියලුම ඩොමේන් වලින් එන රික්වෙස්ට් සඳහා CORS අවසර දීම
+// CORS හැඩගැස්වීම (සියලුම ඩොමේන් සඳහා අවසර ලබා දීම)
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type']
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
+
+// OPTIONS සඳහා විශේෂයෙන් ප්‍රතිචාර දැක්වීම
+app.options('*', cors());
 
 const MONGO_URI = "mongodb+srv://gimahandasun_db_user:wBQRsaPleVoFEXSK@cluster0.k2jdqob.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
